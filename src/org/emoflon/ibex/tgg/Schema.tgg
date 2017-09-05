@@ -13,6 +13,10 @@
 } 
 
 #correspondence {
+	JavaModel2UMLPackage {
+		#src->java.Model
+		#trg->uml.Package
+	}
 	
 }
 
