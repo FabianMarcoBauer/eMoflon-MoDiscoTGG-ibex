@@ -1,0 +1,21 @@
+// Add imports here
+#import "platform:/plugin/org.eclipse.gmt.modisco.java/model/java.ecore"
+#import "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
+
+#schema MoDiscoIbexTGG
+	
+#source {
+	java
+}
+
+#target { 
+	uml
+} 
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}
