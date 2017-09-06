@@ -13,6 +13,11 @@
 } 
 
 #correspondence {
+	CompilationUnit2Artifact{
+		#src->CompilationUnit
+		#trg->Artifact
+	}
+	
 	JavaModel2UMLPackage {
 		#src->Model
 		#trg->Package
