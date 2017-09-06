@@ -22,6 +22,11 @@
 		#src->Package
 		#trg->Package
 	}
+	
+	NamedElement2NamedElement {
+		#src->NamedElement
+		#trg->NamedElement
+	}
 }
 
 #attributeConditions {
