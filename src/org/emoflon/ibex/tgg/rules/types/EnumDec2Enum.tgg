@@ -1,14 +1,14 @@
 #using MoDiscoIbexTGG.*
 #using AttrCondDefLibrary.*
 
-#rule ClassDec2Class #with MoDiscoIbexTGG
+#rule EnumDec2Enum #with MoDiscoIbexTGG
 
 #source { 
 	jPackage : Package {
 		++ -ownedElements->bodyDeclaration
 	}
 	
-	++ bodyDeclaration : ClassDeclaration
+	++ bodyDeclaration : EnumDeclaration
 }
 
 #target {
@@ -16,7 +16,7 @@
 		++ -packagedElement->feature
 	}
 	
-	++ feature : Class
+	++ feature : Enumeration
 }
 
 #correspondence {
@@ -33,5 +33,4 @@
 
 #attributeConditions {
 	eq_string(bodyDeclaration.name, feature.name)
-	nonParameterizedName(feature.name)
 }
