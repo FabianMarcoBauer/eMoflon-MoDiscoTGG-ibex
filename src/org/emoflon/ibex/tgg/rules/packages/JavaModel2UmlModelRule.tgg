@@ -9,7 +9,7 @@
 
 #target {
 	++ rootModel : Model {
-		//name:="root model"
+		name:="root model"
 		++ -packagedElement->umlModel
 		++ -packagedElement->externalModel
 		++ -packagedElement->sourceRefModel
@@ -18,13 +18,13 @@
 		++ -packagedElement->commonTypes
 	}
 	++ externalModel : Model {
-		//name:="externals"
+		name:="externals"
 	}
 	++ sourceRefModel : Model {
-		//name:="source references"
+		name:="source references"
 	}
 	++ commonTypes : Package {
-		//name := "Common Java datatypes"
+		name := "Common Java datatypes"
 	}
 	
 }
@@ -54,8 +54,8 @@
 
 #attributeConditions {
 	eq_string(javaModel.name, umlModel.name)
-	eq_string(rootModel.name, "root model")
-	eq_string(commonTypes.name, "Common Java datatypes")
-	eq_string(sourceRefModel.name, "source references")
-	eq_string(externalModel.name, "externals")
+//	eq_string(rootModel.name, "root model")
+//	eq_string(commonTypes.name, "Common Java datatypes")
+//	eq_string(sourceRefModel.name, "source references")
+//	eq_string(externalModel.name, "externals")
 }

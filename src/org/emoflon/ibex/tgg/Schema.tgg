@@ -14,10 +14,14 @@
 
 #correspondence {
 	JavaModel2UMLPackage {
-		#src->java.Model
-		#trg->uml.Package
+		#src->Model
+		#trg->Package
 	}
 	
+	JavaPackage2UmlPackage {
+		#src->Package
+		#trg->Package
+	}
 }
 
 #attributeConditions {
