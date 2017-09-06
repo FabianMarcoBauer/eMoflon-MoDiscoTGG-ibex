@@ -3,36 +3,36 @@
 #import "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
 
 #schema MoDiscoIbexTGG
-	
+
 #source {
 	java
 }
 
-#target { 
+#target {
 	uml
-} 
+}
 
 #correspondence {
 	CompilationUnit2Artifact{
 		#src->CompilationUnit
 		#trg->Artifact
 	}
-	
+
 	JavaModel2UMLPackage {
 		#src->Model
 		#trg->Package
 	}
-	
+
 	JavaPackage2UmlPackage {
 		#src->Package
 		#trg->Package
 	}
-	
+
 	Modifier2NamedElement {
 		#src->Modifier
 		#trg->NamedElement
 	}
-	
+
 	NamedElement2NamedElement {
 		#src->NamedElement
 		#trg->NamedElement
@@ -44,4 +44,11 @@
 		#sync:[B B],[B F], [F B]
 		#gen:[B B],[B F],[F B],[F F]
 	}
+
+	#userDefined nonParameterizedName(name:EString) {
+		#sync:[B]
+		#gen:[B]
+	}
 }
+
+

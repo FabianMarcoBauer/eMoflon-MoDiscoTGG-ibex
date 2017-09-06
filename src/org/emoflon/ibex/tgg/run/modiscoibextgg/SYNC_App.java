@@ -1,16 +1,22 @@
 package org.emoflon.ibex.tgg.run.modiscoibextgg;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 import org.apache.log4j.BasicConfigurator;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gmt.modisco.java.emf.JavaPackage;
 import org.eclipse.gmt.modisco.java.emf.impl.JavaPackageImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.impl.UMLPackageImpl;
+import org.emoflon.ibex.tgg.operational.OperationalStrategy;
+import org.emoflon.ibex.tgg.operational.csp.constraints.factories.RuntimeTGGAttrConstraintProvider;
+import org.emoflon.ibex.tgg.operational.csp.constraints.factories.UserDefinedRuntimeTGGAttrConstraintFactory;
 import org.emoflon.ibex.tgg.operational.strategies.sync.SYNC;
+import org.emoflon.ibex.tgg.operational.util.IbexOptions;
 import org.emoflon.ibex.tgg.runtime.engine.DemoclesEngine;
 
 @SuppressWarnings("restriction")
@@ -18,7 +24,29 @@ public class SYNC_App extends SYNC {
 
 	public SYNC_App(String projectName, String workspacePath, boolean flatten, boolean debug) throws IOException {
 		super(projectName, workspacePath, flatten, debug);
-		registerPatternMatchingEngine(new DemoclesEngine());
+		registerPatternMatchingEngine(new DemoclesEngine() {
+			// FIXME UserDefinedRuntimeTGGAttrConstraintFactory has to be added manually
+			@Override
+			public void initialise(ResourceSet rs, OperationalStrategy app, IbexOptions options) {
+				try {
+					Field f = OperationalStrategy.class.getDeclaredField("runtimeConstraintProvider");
+					f.setAccessible(true);
+					RuntimeTGGAttrConstraintProvider constraintProvider = (RuntimeTGGAttrConstraintProvider) f.get(app);
+					f.setAccessible(false);
+					constraintProvider.registerFactory(new UserDefinedRuntimeTGGAttrConstraintFactory());
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (NoSuchFieldException e) {
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					e.printStackTrace();
+				}
+
+				super.initialise(rs, app, options);
+			}
+		});
 	}
 
 	public static void main(String[] args) throws IOException {

@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 import org.emoflon.ibex.tgg.operational.csp.RuntimeTGGAttributeConstraint;
 
 import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_jVisibility2umlVisibility;
+import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_nonParameterizedName;
 
 public class UserDefinedRuntimeTGGAttrConstraintFactory extends RuntimeTGGAttrConstraintFactory {
 
@@ -21,6 +22,7 @@ public class UserDefinedRuntimeTGGAttrConstraintFactory extends RuntimeTGGAttrCo
 	private void initialize() {
 		creators = new HashMap<>();
 		creators.put("jVisibility2umlVisibility", () -> new UserDefined_jVisibility2umlVisibility());
+		creators.put("nonParameterizedName", () -> new UserDefined_nonParameterizedName());
 		
 		constraints = new HashSet<String>();
 		constraints.addAll(creators.keySet());
