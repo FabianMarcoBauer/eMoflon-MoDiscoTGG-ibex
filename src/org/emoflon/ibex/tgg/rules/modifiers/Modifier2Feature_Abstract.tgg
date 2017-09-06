@@ -1,0 +1,21 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule Modifier2Feature_Abstract #with MoDiscoIbexTGG
+
+#source {
+	++modifier:Modifier
+}
+
+#target {
+	++feature:Feature
+}
+
+#correspondence {
+}
+
+#attributeConditions {
+	eq_boolean(modifier.static, feature.isStatic)
+}
+
+

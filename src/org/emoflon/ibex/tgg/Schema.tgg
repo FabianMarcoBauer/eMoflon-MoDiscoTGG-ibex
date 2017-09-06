@@ -28,6 +28,11 @@
 		#trg->Package
 	}
 	
+	Modifier2NamedElement {
+		#src->Modifier
+		#trg->NamedElement
+	}
+	
 	NamedElement2NamedElement {
 		#src->NamedElement
 		#trg->NamedElement
@@ -35,5 +40,8 @@
 }
 
 #attributeConditions {
-	
+	#userDefined jVisibility2umlVisibility(jVisibility:java.VisibilityKind, uVisibility:uml.VisibilityKind){
+		#sync:[B B],[B F], [F B]
+		#gen:[B B],[B F],[F B],[F F]
+	}
 }
