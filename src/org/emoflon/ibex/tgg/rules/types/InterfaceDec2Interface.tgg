@@ -1,0 +1,36 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#rule InterfaceDec2Interface #with MoDiscoIbexTGG
+
+#source { 
+	jPackage : Package {
+		++ -ownedElements->bodyDeclaration
+	}
+	
+	++ bodyDeclaration : InterfaceDeclaration
+}
+
+#target {
+	umlPackage : Package {
+		++ -packagedElement->feature
+	}
+	
+	++ feature : Interface
+}
+
+#correspondence {
+	jp2up : JavaPackage2UmlPackage {
+		#src->jPackage
+		#trg->umlPackage
+	}
+	++ bd2ne : NamedElement2NamedElement {
+		#src->bodyDeclaration
+		#trg->feature
+	}
+}
+
+#attributeConditions {
+	eq_string(bodyDeclaration.name, feature.name)
+	nonParameterizedName(feature.name)
+}
