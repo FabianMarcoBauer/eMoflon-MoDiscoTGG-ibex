@@ -37,6 +37,16 @@
 		#src->NamedElement
 		#trg->NamedElement
 	}
+	
+	TypeAccess2Generalization {
+		#src->TypeAccess
+		#trg->Generalization
+	}
+	
+	TypeAccess2InterfaceRealization{
+		#src->TypeAccess
+		#trg->InterfaceRealization
+	}
 }
 
 #attributeConditions {

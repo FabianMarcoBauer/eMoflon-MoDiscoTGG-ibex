@@ -1,0 +1,49 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#rule TypeAccess2Generalization #with MoDiscoIbexTGG
+
+#source {
+	classDec : ClassDeclaration {
+		++ -superClass->typeAcc
+	}
+	
+	++ typeAcc : TypeAccess {
+		++ -type->superClassDec
+	}
+	
+	superClassDec : Type
+}
+
+#target {
+	umlClassifier : Classifier {
+		++ -generalization->generalization
+	}
+	
+	++ generalization : Generalization {
+		++ -general->superClass
+	}
+	
+	superClass : Class
+}
+
+#correspondence {
+	cd2c : NamedElement2NamedElement {
+		#src->classDec
+		#trg->umlClassifier
+	}
+	
+	++ ta2g : TypeAccess2Generalization {
+		#src->typeAcc
+		#trg->generalization
+	}
+	
+	cd2c2 : NamedElement2NamedElement {
+		#src->superClassDec
+		#trg->superClass
+	}
+}
+
+#attributeConditions {
+	
+}
