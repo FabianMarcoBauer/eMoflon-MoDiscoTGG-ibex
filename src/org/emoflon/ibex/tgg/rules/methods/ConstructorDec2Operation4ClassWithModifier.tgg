@@ -1,0 +1,18 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#rule ConstructorDec2Operation4ClassWithModifier #extends ConstructorDec2Operation4Class,Modifier2Feature_Abstract #with MoDiscoIbexTGG
+
+#source { 
+}
+
+#target {
+}
+
+#correspondence {
+}
+
+#attributeConditions {
+}
+
+
