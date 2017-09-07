@@ -1,0 +1,20 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#rule InnerClassDeclaration2InnerClass_InInterface #extends InnerClassDeclaration2InnerClass_Abstract, InnerDeclaration2InnerClassifier_InInterface_Abstract #with MoDiscoIbexTGG
+
+#source { 
+	
+}
+
+#target {
+	
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

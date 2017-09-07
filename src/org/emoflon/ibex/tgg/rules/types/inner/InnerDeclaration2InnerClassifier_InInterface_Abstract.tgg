@@ -1,0 +1,24 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule InnerDeclaration2InnerClassifier_InInterface_Abstract #extends InnerDeclaration2InnerClassifier_Abstract #with MoDiscoIbexTGG
+
+#source { 
+	jContainer:AbstractTypeDeclaration
+}
+
+#target {
+	uContainer:Interface {
+		++-nestedClassifier->feature
+	}
+	
+	++feature:Classifier
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

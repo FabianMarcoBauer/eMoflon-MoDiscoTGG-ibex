@@ -1,0 +1,20 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule InnerEnumDeclaration2InnerEnumeration_Abstract #extends InnerDeclaration2InnerClassifier_Abstract #with MoDiscoIbexTGG
+
+#source {
+	++bodyDeclaration:EnumDeclaration
+}
+
+#target {
+	++feature:Enumeration
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}
