@@ -1,7 +1,7 @@
 #using MoDiscoIbexTGG.*
 #using AttrCondDefLibrary.*
 
-#abstract #rule Modifier2Feature_Abstract #with MoDiscoIbexTGG
+#abstract #rule Modifier2Feature_Abstract #extends Modifier2NamedElement_Abstract #with MoDiscoIbexTGG
 
 #source {
 	++modifier:Modifier

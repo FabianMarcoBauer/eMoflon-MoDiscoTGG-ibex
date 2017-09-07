@@ -1,0 +1,23 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#rule FieldDec2Property4Class #extends FieldDec2Property4_Abstract #with MoDiscoIbexTGG
+
+#source {
+}
+
+#target {
+	uOwnerType : Class{
+		++-ownedAttribute->feature
+	}
+	
+	++feature:Property
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

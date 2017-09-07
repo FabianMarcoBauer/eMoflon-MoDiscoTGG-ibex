@@ -1,0 +1,55 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#abstract #rule FieldDec2Property4_Abstract #with MoDiscoIbexTGG
+
+#source { 
+	jOwnerType : AbstractTypeDeclaration{
+		++-bodyDeclarations->bodyDeclaration
+	}
+	
+	++bodyDeclaration : FieldDeclaration{
+		++-type->typeAccess
+		++-fragments->vdf
+	}
+	
+	++typeAccess : TypeAccess{
+
+	}
+	
+	++vdf : VariableDeclarationFragment{
+		
+	}
+
+}
+
+#target {
+	uOwnerType : NamedElement{
+	}
+	
+	++feature : Property{
+
+	}
+	
+}
+
+#correspondence {
+	jo2uo : NamedElement2NamedElement{
+		#src->jOwnerType
+		#trg->uOwnerType
+	}
+	
+	++bd2ne : NamedElement2NamedElement {
+		#src->bodyDeclaration
+		#trg->feature
+	}
+	
+	++ta2p:TypeAccess2Property {
+		#src->typeAccess
+		#trg->feature
+	}
+}
+
+#attributeConditions {
+	eq_string(vdf.name,feature.name)
+}
