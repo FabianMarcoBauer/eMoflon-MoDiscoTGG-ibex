@@ -1,0 +1,24 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#rule TypeAccessType2ParameterType_Return #extends TypeAccessType2ParameterType_Abstract #with MoDiscoIbexTGG
+
+#source { 
+	method:MethodDeclaration{
+		-returnType -> typeAccess
+	}
+	
+	typeAccess:TypeAccess
+}
+
+#target {
+	
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

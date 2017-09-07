@@ -1,0 +1,24 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#rule TypeAccessType2ParameterType_Parameter #extends TypeAccessType2ParameterType_Abstract #with MoDiscoIbexTGG
+
+#source { 
+	variableDec : SingleVariableDeclaration{
+		-type->typeAccess
+	}
+	
+	typeAccess:TypeAccess
+}
+
+#target {
+	
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

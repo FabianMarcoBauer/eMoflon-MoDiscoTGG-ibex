@@ -1,0 +1,47 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#rule VariableDec2Parameter #with MoDiscoIbexTGG
+
+#source { 
+	method : AbstractMethodDeclaration {
+		++ -parameters->variableDec
+	}
+	
+	++ variableDec : SingleVariableDeclaration{
+		++ -type->typeAccess
+	}
+	
+	++ typeAccess : TypeAccess{
+	}
+}
+
+#target {
+	operation : Operation {
+		++ -ownedParameter->param
+	}
+	++ param : Parameter{
+	}
+}
+
+#correspondence {	
+	md2o : NamedElement2NamedElement {
+		#src->method
+		#trg->operation
+	}
+	
+	++ vd2p : VariableDec2Parameter {
+		#src->variableDec
+		#trg->param
+	}
+	
+	++ty2p:TypeAccess2Parameter {
+		#src->typeAccess
+		#trg->param
+	}
+}
+
+#attributeConditions {
+	eq_string(variableDec.name, param.name)
+	isInParameter(param.direction)
+}

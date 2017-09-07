@@ -37,24 +37,44 @@
 		#src->NamedElement
 		#trg->NamedElement
 	}
-	
+
 	TypeAccess2Generalization {
 		#src->TypeAccess
 		#trg->Generalization
 	}
-	
+
 	TypeAccess2InterfaceRealization{
 		#src->TypeAccess
 		#trg->InterfaceRealization
 	}
-	
+
+	TypeAccess2Parameter {
+		#src->TypeAccess
+		#trg->Parameter
+	}
+
 	TypeAccess2Property {
 		#src->TypeAccess
 		#trg->Property
 	}
+
+	VariableDec2Parameter {
+		#src->VariableDeclaration
+		#trg->Parameter
+	}
 }
 
 #attributeConditions {
+	#userDefined isInParameter(parameter:ParameterDirectionKind){
+		#sync:[F],[B]
+		#gen:[F],[B]
+	}
+
+	#userDefined isReturn(parameter:ParameterDirectionKind){
+		#sync:[F],[B]
+		#gen:[F],[B]
+	}
+
 	#userDefined jVisibility2umlVisibility(jVisibility:java.VisibilityKind, uVisibility:uml.VisibilityKind){
 		#sync:[B B],[B F], [F B]
 		#gen:[B B],[B F],[F B],[F F]

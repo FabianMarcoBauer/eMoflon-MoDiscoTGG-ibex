@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.function.Supplier;
 import org.emoflon.ibex.tgg.operational.csp.RuntimeTGGAttributeConstraint;
 
+import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_isInParameter;
+import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_isReturn;
 import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_jVisibility2umlVisibility;
 import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_nonParameterizedName;
 
@@ -21,6 +23,8 @@ public class UserDefinedRuntimeTGGAttrConstraintFactory extends RuntimeTGGAttrCo
 	
 	private void initialize() {
 		creators = new HashMap<>();
+		creators.put("isInParameter", () -> new UserDefined_isInParameter());
+		creators.put("isReturn", () -> new UserDefined_isReturn());
 		creators.put("jVisibility2umlVisibility", () -> new UserDefined_jVisibility2umlVisibility());
 		creators.put("nonParameterizedName", () -> new UserDefined_nonParameterizedName());
 		
