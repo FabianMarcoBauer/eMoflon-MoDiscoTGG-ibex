@@ -84,6 +84,11 @@
 		#sync:[B]
 		#gen:[B]
 	}
+	
+	#userDefined parameterizedNameFitsNonParameterizedName(parameterizedName:EString, unparameterizedName:EString) {
+		#sync:[B B]
+		#gen:[B B]
+	}
 }
 
 

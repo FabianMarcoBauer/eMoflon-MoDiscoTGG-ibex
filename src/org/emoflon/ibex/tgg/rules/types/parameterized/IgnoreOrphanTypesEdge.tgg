@@ -1,0 +1,24 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#rule IgnoreOrphanTypesEdge #with MoDiscoIbexTGG
+
+#source { 
+	model:Model{
+		++-orphanTypes->pt
+	}
+	
+	pt:ParameterizedType
+}
+
+#target {
+	
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

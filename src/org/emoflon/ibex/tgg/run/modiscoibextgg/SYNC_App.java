@@ -25,7 +25,7 @@ public class SYNC_App extends SYNC {
 	public SYNC_App(String projectName, String workspacePath, boolean flatten, boolean debug) throws IOException {
 		super(projectName, workspacePath, flatten, debug);
 		registerPatternMatchingEngine(new DemoclesEngine() {
-			// FIXME UserDefinedRuntimeTGGAttrConstraintFactory has to be added manually
+			// FIXME UserDefinedRuntimeTGGAttrConstraintFactory has to be added manually/with reflection
 			@Override
 			public void initialise(ResourceSet rs, OperationalStrategy app, IbexOptions options) {
 				try {

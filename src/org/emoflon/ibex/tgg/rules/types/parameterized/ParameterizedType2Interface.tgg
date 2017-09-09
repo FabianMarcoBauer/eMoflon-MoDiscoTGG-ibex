@@ -1,0 +1,21 @@
+#using MoDiscoIbexTGG.*
+#using AttrCondDefLibrary.*
+
+#rule ParameterizedType2Interface #extends ParameterizedType2Classifier_Abstract #with MoDiscoIbexTGG
+
+#source { 
+	nonParamType:AbstractTypeDeclaration
+}
+
+#target {
+	nonParamElement:Interface
+	++parameterizedClassifier:Interface
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	
+}

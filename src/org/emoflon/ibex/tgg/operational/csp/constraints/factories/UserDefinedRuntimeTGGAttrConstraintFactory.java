@@ -11,6 +11,7 @@ import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_isInP
 import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_isReturn;
 import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_jVisibility2umlVisibility;
 import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_nonParameterizedName;
+import org.emoflon.ibex.tgg.operational.csp.constraints.custom.UserDefined_parameterizedNameFitsNonParameterizedName;
 
 public class UserDefinedRuntimeTGGAttrConstraintFactory extends RuntimeTGGAttrConstraintFactory {
 
@@ -27,6 +28,7 @@ public class UserDefinedRuntimeTGGAttrConstraintFactory extends RuntimeTGGAttrCo
 		creators.put("isReturn", () -> new UserDefined_isReturn());
 		creators.put("jVisibility2umlVisibility", () -> new UserDefined_jVisibility2umlVisibility());
 		creators.put("nonParameterizedName", () -> new UserDefined_nonParameterizedName());
+		creators.put("parameterizedNameFitsNonParameterizedName", () -> new UserDefined_parameterizedNameFitsNonParameterizedName());
 		
 		constraints = new HashSet<String>();
 		constraints.addAll(creators.keySet());
