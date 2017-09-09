@@ -2,12 +2,16 @@ package org.emoflon.ibex.tgg.run.modiscoibextgg;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.text.NumberFormat;
+import java.util.Random;
+import java.util.Set;
 
 import org.apache.log4j.BasicConfigurator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.gmt.modisco.java.Model;
 import org.eclipse.gmt.modisco.java.emf.JavaPackage;
 import org.eclipse.gmt.modisco.java.emf.impl.JavaPackageImpl;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -19,8 +23,18 @@ import org.emoflon.ibex.tgg.operational.strategies.sync.SYNC;
 import org.emoflon.ibex.tgg.operational.util.IbexOptions;
 import org.emoflon.ibex.tgg.runtime.engine.DemoclesEngine;
 
+import common.delta.DeltaApplicator;
+import common.delta.DeltaResult;
+import common.delta.IndexedModel;
+
 @SuppressWarnings("restriction")
 public class SYNC_App extends SYNC {
+	private static final NumberFormat numberFormat;
+	static {
+		numberFormat = NumberFormat.getInstance();
+		numberFormat.setMaximumFractionDigits(9);
+		numberFormat.setMinimumFractionDigits(9);
+	}
 
 	public SYNC_App(String projectName, String workspacePath, boolean flatten, boolean debug) throws IOException {
 		super(projectName, workspacePath, flatten, debug);
@@ -70,7 +84,28 @@ public class SYNC_App extends SYNC {
 			sync.forward();
 			long toc = System.currentTimeMillis();
 			logger.info("Completed SYNC in: " + (toc - tic) + " ms");
+			
+			int size = 10;
+			DeltaApplicator deltaApplicator = new DeltaApplicator(size);
+			Set<Class<?>> forwardInterests = deltaApplicator.getForwardInterests();
+			System.gc();
+			long start = System.currentTimeMillis();
+			DeltaResult lastDeltaResult = deltaApplicator.applyForward(new IndexedModel<Model>((Model) sync.s.getContents().get(0), entry->true,
+					forwardInterests.toArray(new Class[forwardInterests.size()])), new Random(0));
+			sync.forward();
+			long end = System.currentTimeMillis();
+			System.out.println(
+					"result\t\teMoflonOld\tsafwd\t " + numberFormat.format((end - start) / 1000000000.0) + "\t" + size);
 			sync.saveModels();
+			
+			start = System.currentTimeMillis();
+			deltaApplicator.revert(lastDeltaResult);
+			sync.forward();
+			end = System.currentTimeMillis();
+			System.out.println(
+					"result\t\teMoflonOld\tsrfwd\t " + numberFormat.format((end - start) / 1000000000.0) + "\t" + size);
+			
+//			sync.saveModels();
 			sync.terminate();
 		}
 
